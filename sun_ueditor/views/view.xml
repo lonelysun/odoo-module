@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3: -->
+<openerp>
+	<data>
+        <template id="assets_backend" name="web_ueditor assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+    			<script type="text/javascript" charset="utf-8" src="/born_ueditor/static/lib/ueditor.config.js"></script>
+				<script type="text/javascript" charset="utf-8" src="/born_ueditor/static/lib/ueditor.all.js"></script>
+				<script type="text/javascript" charset="utf-8" src="/born_ueditor/static/lib/ueditor.parse.js"></script>
+				<script type="text/javascript" charset="utf-8" src="/born_ueditor/static/lib/lang/zh-cn/zh-cn.js"></script>
+				 
+                <script type="text/javascript" charset="utf-8" src="/born_ueditor/static/src/js/ueditor.js"></script>
+            </xpath>
+        </template>
+	</data>
+</openerp>
