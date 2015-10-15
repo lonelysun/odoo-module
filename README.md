@@ -8,4 +8,6 @@ sun_cleditor:oe内部编辑器，同上。
 
 sun_image_service_server:单张图片上传s3，返回url存入数据库
 
+sun_image_crop:图片裁剪插件
+
 odoo 8.0
