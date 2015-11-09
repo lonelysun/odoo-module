@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+        <record id="view_born_otm" model="ir.ui.view">
+        	<field name="name">born.otm.form</field>
+            <field name="model">born.otm</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <header>
+            		</header>
+
+            		<sheet>
+            			<div class="oe_left" style="width: 500px;">
+                            <div class="oe_title" style="width: 390px;">
+                                <h1><field name="name" class="oe_inline" required="1"/>
+				</h1>
+                            </div>
+                        </div>
+
+            			<group>
+            				<field name="category_id" style="width: 300px;"/>
+            			</group>
+
+            			<notebook>
+                            <page string="当前情况" >
+                                 <field name="table_ids">
+                                    <tree string="Table Ids">
+                                        <field name="name"  />
+                                        <field name="size"  />
+                                        <field name="number"  />
+                                    </tree>
+                                </field>
+            				</page>
+            			</notebook>
+            		</sheet>
+            	</form>
+            </field>
+        </record>
+
+        <record id="filter_born_otm" model="ir.ui.view">
+            <field name="name">born.otm.Search</field>
+            <field name="model">born.otm</field>
+            <field name="arch" type="xml">
+                <search string="名称">
+                    <field name="name" string="名称" filter_domain="[('name','ilike',self)]"/>
+                    <group  expand='0' string='分组'>
+						<filter string="类型" context="{'group_by':'category_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="born_otm_tree" model="ir.ui.view">
+        	<field name="name">born.otm.tree</field>
+            <field name="model">born.otm</field>
+            <field name="arch" type="xml">
+           		<tree string="otm">
+           			<field name="name"></field>
+                    <field name="category_id" string="类型" ></field>
+                    <field name="create_date" string="创建日期" ></field>
+           		</tree>
+           	</field>
+        </record>
+
+        <record id="action_otm" model="ir.actions.act_window">
+        	<field name="name">厅桌管理</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">born.otm</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="born_otm_tree"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    	单击创建新的服务
+                </p>
+            </field>
+        </record>
+    	
+    
+    	<record id="view_otm_category" model="ir.ui.view">
+        	<field name="name">otm.category.form</field>
+            <field name="model">otm.category</field>
+            <field name="arch" type="xml">
+            	<form>
+            		<sheet>
+            			<group>
+            				<field name="name"></field>
+            			</group>
+            		</sheet>
+            	</form>
+            </field>
+        </record>
+
+        <record id="otm_category_tree" model="ir.ui.view">
+        	<field name="name">otm.category.tree</field>
+            <field name="model">otm.category</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+           		<tree string="category">
+           			<field name="name"></field>
+           		</tree>
+           	</field>
+        </record>
+
+        <record id="action_category" model="ir.actions.act_window">
+        	<field name="name">类型</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">otm.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="otm_category_tree"/>
+            <field name="help" type="html">
+                <p class="oe_view_nootm_create">
+                    	单击创建新的分类
+                </p>
+            </field>
+        </record>
+        
+        
+        <menuitem name="厅桌管理" id="otm_one" sequence="90" groups="born_odoo.group_born_member_card_user" />
+        <menuitem name="厅桌管理" id="otm_two" sequence="1" parent="otm_one"   />
+        <menuitem name="厅桌管理" id="otm_two_one" sequence="1" parent="otm_two" action="action_otm"  />
+        <menuitem name="类型" id="otm_two_two" parent="otm_two" action="action_category"  sequence="2"/>
+        <menuitem name="桌列表" id="otm_two_three" parent="otm_three" action="action_table"  sequence="3"/>
+
+    	
+	</data>
+</openerp>
